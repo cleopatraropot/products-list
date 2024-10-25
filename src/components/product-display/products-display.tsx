@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from "react";
 import './products-display.scss';
+import { Link } from 'react-router-dom';
 
-interface Product {
+export interface Product {
     id: number;
     name: string;
     title: string;
     price: number;
     description: string;
+    category: string;
     image: string;
     rating: {
         rate: number;
@@ -41,11 +43,13 @@ const ProductDisplay: React.FC = () => {
             <div className="products-container">
                 {data.map((product) => (
                     <div key={product.id} className="product-card">
-                        <img src={product.image} alt={product.title} className="product-image"/>
-                        <h3 className="product-name">{product.name}</h3>
-                        <p className="product-price">{product.price} $</p>
-                        <p className="product-description">{product.description}</p>
-                        <p className="product-rating">Rating: {product.rating.rate} ({product.rating.count} reviews)</p>
+                        <Link to={`/products/${product.id}`}>
+                            <img src={product.image} alt={product.title} className="product-image"/>
+                            <h3 className="product-name">{product.name}</h3>
+                            <p className="product-price">{product.price} $</p>
+                            <p className="product-description">{product.description}</p>
+                            <p className="product-rating">Rating: {product.rating.rate} ({product.rating.count} reviews)</p>
+                        </Link>
                     </div>
                 ))}
             </div>
