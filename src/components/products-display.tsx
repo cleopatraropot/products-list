@@ -4,6 +4,7 @@ import './products-display.scss';
 interface Product {
     id: number;
     name: string;
+    title: string;
     price: number;
     description: string;
     image: string;
@@ -14,7 +15,7 @@ interface Product {
 }
 
 const ProductDisplay: React.FC = () => {
-    const [data, setData] = useState<any[]>([]);
+    const [data, setData] = useState<Product[]>([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
